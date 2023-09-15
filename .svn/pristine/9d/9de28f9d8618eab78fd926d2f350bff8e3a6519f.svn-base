@@ -1,0 +1,22 @@
+package com.ggv.movie.mapper;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.ggv.movie.domain.MovieVO;
+
+public interface MovieMapper {
+	public List<MovieVO> getList(@Param("movieChart") String movieChart);
+	
+	public MovieVO getMovie(MovieVO movie);
+//	public MovieVO getMovie(@Param("movie") MovieVO movie, ...);
+	
+	public MovieVO getMovieInfo(Integer movie_pk);
+	
+	public int getCountMovie(Integer movie_pk);
+	
+}
+
+
+

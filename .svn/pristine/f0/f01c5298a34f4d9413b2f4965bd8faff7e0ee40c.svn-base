@@ -1,0 +1,91 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<jsp:include page="../includes/myPageHeader.jsp"></jsp:include>
+    <!-- header 부분 종료 -->
+
+    <main class="d-flex mt-5 mx-auto" id="wrapper">
+        <!-- Sidebar -->
+        <jsp:include page="../includes/myPageSideMenu.jsp"></jsp:include>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <button class="btn btn-danger" id="menu-toggle">Toggle Menu</button>
+            </nav>
+
+            <div class="container-fluid row col-8 mx-auto d-flex mt-3">
+                <div class="col-sm-4 d-flex justify-content-center">
+                    <img src="/images/user.png" alt="" class="">
+                </div>
+                <jsp:include page="../mypage/myPageTitle.jsp"></jsp:include>
+            </div>
+            <hr>
+
+            <div class="container-fluid">
+                <div class="my-resv">
+                    <div class="h4 mt-2">내가 본 영화</div>
+                    <div>
+                        <span>지난 5년 동안의 관람 영화를 확인할 수 있습니다.
+                        </span>
+                    </div>
+                </div>
+                <hr>
+                <div class="container-fluid my-cancled">
+                    <div class="my-cancled-list table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>영화명</th>
+                                    <th>관람 GGV</th>
+                                    <th>관람일시</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="align-middle font-weight-bold">청년경찰<br>night runner</td>
+                                    <td class="align-middle">GGV 등촌</td>
+                                    <td class="align-middle">
+                                        2019년 8월 30일
+                                        <br>
+                                        19:20 ~ 21:20
+                                        <br>
+                                        A11, A12
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="align-middle font-weight-bold">베테랑<br>Veteran</td>
+                                    <td class="align-middle">GGV 가양</td>
+                                    <td class="align-middle">
+                                        2019년 7월 30일
+                                        <br>
+                                        19:20 ~ 21:20
+                                        <br>
+                                        A11, A12
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+        </div>
+    </main>
+
+    <!-- footer 부분 시작 -->
+    <footer>
+        <div class="theater-info">
+        </div>
+        <div class="copyright">
+            java | spring | jsp | css | js | jquery | bootstrap4 | Oracle DB | AWS | Responsive Web
+            <br>
+            copyright@2019 Hwang yung il | Park so yoon | Jeong min young
+        </div>
+    </footer>
+    <!-- footer 부분 종료 -->
+</body>
+
+</html>

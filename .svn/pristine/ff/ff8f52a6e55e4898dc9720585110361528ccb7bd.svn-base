@@ -1,0 +1,19 @@
+package com.ggv.review.domain;
+
+import org.apache.ibatis.type.Alias;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Alias("attachfile")
+@AllArgsConstructor
+@NoArgsConstructor
+public class AttachfileVO {
+	private Integer attachfile_pk;
+	private String filename;
+	private Integer filesize;
+	private String file_url;
+	private Integer review_pk_no;
+}

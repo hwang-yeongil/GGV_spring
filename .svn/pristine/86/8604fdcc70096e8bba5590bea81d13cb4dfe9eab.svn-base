@@ -1,0 +1,74 @@
+package com.ggv.review.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ggv.review.domain.Criteria;
+import com.ggv.review.domain.ReviewPageDTO;
+import com.ggv.review.domain.ReviewVO;
+import com.ggv.review.mapper.ReviewMapper;
+
+import lombok.AllArgsConstructor;
+import lombok.Setter;
+import lombok.extern.log4j.Log4j;
+
+@Log4j
+@Service
+@AllArgsConstructor
+public class ReviewServiceImpl implements ReviewService {
+	@Setter
+	@Autowired
+	private ReviewMapper mapper;
+
+	@Override
+	public List<ReviewVO> getList(Integer movie_pk) {
+		log.info("review getList....");
+		return mapper.getReviewList(movie_pk);
+	}
+
+	@Override
+	public ReviewVO getReview(Integer review_pk) {
+		log.info("getReview..." + review_pk);
+		return mapper.getReview(review_pk);
+	}
+
+	@Override
+	public int getCountReview(Integer review_pk) {
+		return mapper.getCountReview(review_pk);
+	}
+
+	@Override
+	public void insert(ReviewVO review) {
+		log.info("insert..." + review);
+		mapper.insertSelectKey(review);
+	}
+	
+	@Override
+	public void insertSelectKey(ReviewVO review) {
+		mapper.insertSelectKey(review);
+	}
+	
+	@Override
+	public boolean modify(ReviewVO review) {
+		log.info("modify..." + review);
+		return mapper.update(review) == 1;
+	}
+
+	@Override
+	public boolean remove(Integer review_pk) {
+		log.info("remove..." + review_pk);
+		return mapper.delete(review_pk) == 1;
+	}
+
+	// 2019.10.24 작성
+	// 리뷰 별점 처리 위해 사용
+	@Override
+	public ReviewPageDTO getListPage(Criteria cri, Integer movie_pk) {
+		return new ReviewPageDTO(
+			mapper.getCountByMovie_pk(movie_pk),
+			mapper.getScoreByMovie_pk(movie_pk),
+			mapper.getListWithPaging(cri, movie_pk));
+	}
+}

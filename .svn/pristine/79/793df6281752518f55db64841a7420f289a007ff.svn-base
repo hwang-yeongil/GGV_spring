@@ -1,0 +1,120 @@
+package com.ggv.mypage.controller;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.ggv.member.domain.KakaoMemberVO;
+import com.ggv.member.domain.MemberVO;
+import com.ggv.member.service.MemberService;
+import com.ggv.member.service.MemberSha256;
+
+import lombok.Setter;
+import lombok.extern.log4j.Log4j;
+
+@Controller
+@Log4j
+@RequestMapping("/myPage/*")
+public class myPageController {
+	@Setter @Autowired
+	private MemberService memberservice;
+	
+	@GetMapping("/myPageMain")
+	public String myPageMain() {
+		return "mypage/myPageMain";
+	}
+	
+	@GetMapping("/myPageCancled")
+	public String myPageCancled() {
+		return "mypage/myPageCancledPage";
+	}
+	
+	@GetMapping("/myPageModify")
+	public String myPageModify(Model model, HttpSession session) {
+		System.out.println(session.getAttribute("loginStat").getClass().getSimpleName());
+		if(session.getAttribute("loginStat").getClass().getSimpleName().equals("KakaoMemberVO")) {
+			KakaoMemberVO kmember = (KakaoMemberVO)session.getAttribute("loginStat");
+			model.addAttribute("loginStat", memberservice.getKakaoMember(kmember.getUserid()));
+		} else {
+			model.addAttribute("loginStat", memberservice.getMember((MemberVO)session.getAttribute("loginStat")));
+		}
+		//System.out.println(session.getAttribute("loginStat").toString().indexOf("apiLogin"));
+		//if(model.addAttribute("loginStat", memberservice.getMember((MemberVO)session.getAttribute("loginStat"))))
+		//model.addAttribute("loginStat", memberservice.getMember((MemberVO)session.getAttribute("loginStat")));
+		return "mypage/myPageModifyPage";
+	}
+	
+	@PostMapping("/myPageModify")
+	public String PostMyPageModify(MemberVO member, Model model) {
+		// 이메일 동의 여부 확인하고
+		if(member.getAgree() == null) {
+			member.setAgree(0);
+		} else {
+			member.setAgree(1);
+		}
+		// 비밀번호 암호화 하고
+		String encryPassword = MemberSha256.encrypt(member.getPassword());
+		member.setPassword(encryPassword);
+		memberservice.modifyMember(member);
+		return "redirect:myPageModify";
+	}
+	
+	@PostMapping("/myPageKakaoModify")
+	public String PostMyKakaoPageModify(KakaoMemberVO member, Model model) {
+		// 이메일 동의 여부 확인하고
+		if(member.getAgree() == null) {
+			member.setAgree(0);
+		} else {
+			member.setAgree(1);
+		}
+		memberservice.modifyKakaoMember(member);
+		return "redirect:myPageModify";
+	}
+	
+	@GetMapping("/myPageRemove")
+	public String myPageRemove() {
+		return "mypage/myPageRemovePage";
+	}
+	
+	@PostMapping("/myPageRemove")
+	public String PostMyPageRemove(MemberVO member, HttpSession session, HttpServletResponse resp) {
+		member.setPassword(MemberSha256.encrypt(member.getPassword()));
+		// 현재 나의 password와 입력한 password가 동일 하다면
+		if(memberservice.getMember((MemberVO)session.getAttribute("loginStat")).getPassword().equals(member.getPassword())) {
+			// 회원 탈퇴를 진행하고
+			// 아직 회원탈퇴 하면 안될듯.
+			// PK로 묶여있어서 다른 TABLE의 묶여있는 row들 삭제 먼저 하고
+			// 얘 지워야 가능함.(2019-10-20)
+			// memberservice.removeMember(member);
+		} else { // 동일하지 않다면
+			memberservice.addAlertScript("비밀번호가 틀렸습니다. 다시 확인해주세요.", resp);
+			return "mypage/myPageRemovePage"; 
+		}
+		return "redirect:/";
+	}
+	
+	@GetMapping("/myPageResv")
+	public String myPageResv() {
+		return "mypage/myPageResvPage";
+	}
+	
+	@GetMapping("/myPageReview")
+	public String myPageReview() {
+		return "mypage/myPageReviewPage";
+	}
+	
+	@GetMapping("/myPageWatched")
+	public String myPageWatched() {
+		return "mypage/myPageWatchedPage";
+	}
+}

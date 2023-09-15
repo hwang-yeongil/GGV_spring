@@ -1,0 +1,53 @@
+package com.ggv.movie.mapper;
+
+import static org.junit.Assert.assertNotNull;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.ggv.member.domain.MemberVO;
+import com.ggv.movie.domain.MovieVO;
+import com.ggv.movie.service.MovieService;
+import com.ggv.movie.service.MovieServiceImpl;
+
+import lombok.Setter;
+import lombok.extern.log4j.Log4j;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+@Log4j
+public class MovieMapperTests {
+	@Setter
+	@Autowired
+	private MovieMapper mapper;
+	
+	@Test
+	public void testExist() {
+		log.info(mapper);
+		assertNotNull(mapper);
+	}
+	
+	@Test
+	public void testGetMovieList() {
+//		log.info(mapper.getList("upComing"));
+		log.info(mapper.getList("movieChart"));
+	}
+
+	@Test
+	public void testGetMovie() {
+		log.info(mapper.getMovieInfo(1));
+
+	}
+	
+	@Test
+	public void testInsert() {
+		MovieVO movie = new MovieVO();
+		movie.setM_title("테스트 제목");
+		movie.setPlot("테스트 줄거리");
+		
+		log.info(movie);
+	}
+}

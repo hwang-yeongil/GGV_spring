@@ -1,0 +1,17 @@
+.custom-feedback {
+	font-size: 70%;
+	color: #dc3545;
+}
+
+::placeholder {
+	font-size: 12px;
+}
+
+label > span:first-of-type {
+	color: red;
+}
+
+/* 2019.11.01 textarea 크기 제한 */
+#inputContent {
+	resize: none;
+}

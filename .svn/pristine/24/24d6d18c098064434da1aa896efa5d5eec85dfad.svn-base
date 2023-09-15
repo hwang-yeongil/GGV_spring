@@ -1,0 +1,28 @@
+package com.ggv.movie.domain;
+
+import org.apache.ibatis.type.Alias;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Alias("movie")
+@AllArgsConstructor
+@NoArgsConstructor
+public class MovieVO {
+	private Integer movie_pk;
+	private String m_title;
+	private String m_title_eng;
+	private String mainpost_img;
+	private String plot;
+	private String runningtime;
+	private String genre;
+	private String watchgrade;
+	private String opendate;
+	private String directors;
+	private Integer actors;
+	private Double score_avg; // 평론가 평점
+	private Double reservation_rate;
+	private String trailer;
+}

@@ -1,0 +1,27 @@
+package com.ggv.review.service;
+
+import java.util.List;
+
+import com.ggv.movie.domain.MovieVO;
+import com.ggv.review.domain.Criteria;
+import com.ggv.review.domain.ReviewPageDTO;
+import com.ggv.review.domain.ReviewVO;
+
+public interface ReviewService {
+	public List<ReviewVO> getList(Integer movie_pk);
+	
+	public ReviewVO getReview(Integer review_pk);
+
+	public int getCountReview(Integer review_pk);
+
+	public void insert(ReviewVO review);
+	
+	public void insertSelectKey(ReviewVO review);
+
+	public boolean remove(Integer review_pk);
+	
+	public boolean modify(ReviewVO review);
+	
+	public ReviewPageDTO getListPage(Criteria cri, Integer review_pk);
+
+}

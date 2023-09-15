@@ -1,0 +1,99 @@
+package com.ggv.review.mapper;
+
+import static org.junit.Assert.assertNotNull;
+
+import java.util.List;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.ggv.review.domain.Criteria;
+import com.ggv.review.domain.ReviewVO;
+
+import lombok.Setter;
+import lombok.extern.log4j.Log4j;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+@Log4j
+public class ReviewMapperTests {
+	@Setter
+	@Autowired
+	private ReviewMapper mapper;
+	
+	@Test
+	public void testExist() {
+		log.info(mapper);
+		assertNotNull(mapper);
+	}
+	
+	@Test
+	public void testGetList() {
+		/*log.info(mapper.getList(1));*/
+		mapper.getReviewList(1).forEach(review -> log.info(review));
+	}
+
+	@Test
+	public void testGetReview() {
+		log.info(mapper.getReview(25));
+	}
+	
+	@Test
+	public void testInsert() {
+		ReviewVO review = new ReviewVO();
+		review.setMovie_pk(2);
+//		review.setReview_pk(77);
+		review.setRv_title("테스트 리뷰제목");
+		review.setRv_content("테스트 리뷰내용");
+		review.setScore(7);
+		review.setUserid("tester");
+		review.setRv_date("2019/10/21");
+		
+		mapper.insert(review);
+		log.info(review);
+	}
+	
+	@Test
+	public void testInsertSelectKey() {
+		ReviewVO review = new ReviewVO();
+		review.setMovie_pk(2);
+		review.setReview_pk(77);
+		review.setRv_title("테스트 리뷰 제목 select key");
+		review.setRv_content("테스트 리뷰 내용 select key");
+		review.setScore(8);
+		review.setUserid("tester");
+		review.setRv_date("2019/10/21");
+		
+		mapper.insertSelectKey(review);
+		log.info(review);
+	}
+
+	@Test
+	public void testDelete() {
+		log.info("DELETE COUNT : " + mapper.delete(55));
+	}
+	
+	@Test
+	public void testUpdate() {
+		ReviewVO review = new ReviewVO();
+		review.setReview_pk(25);
+		review.setRv_date("2019/10/21");
+		review.setRv_content("수정된 리뷰 내용");
+		review.setScore(5);
+		review.setRv_title("수정된 리뷰 제목");
+		
+		int count = mapper.update(review);
+		log.info("UPDATE COUNT : " + count);
+	}
+	
+	@Test
+	public void testList2() {
+		Criteria cri = new Criteria(3, 10);
+		List<ReviewVO> reviews = mapper.getListWithPaging(cri, 2);
+		reviews.forEach(review -> log.info(review));
+	}
+
+}

@@ -1,0 +1,35 @@
+package com.ggv.review.mapper;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.ggv.review.domain.Criteria;
+import com.ggv.review.domain.ReviewVO;
+
+public interface ReviewMapper {
+	public List<ReviewVO> getReviewList(Integer movie_pk);
+	
+	public ReviewVO getReview(Integer review_pk);
+
+	public int getCountReview(Integer review_pk);
+
+	public void insert(ReviewVO review);
+	
+	public void insertSelectKey(ReviewVO review);
+
+	public int delete(Integer review_pk);
+	
+	public int update(ReviewVO review);
+	
+	// 페이징
+	public List<ReviewVO> getListWithPaging(
+			@Param("cri") Criteria cri,
+			@Param("movie_pk") Integer movie_pk);
+	
+	// 별점
+	public int getCountByMovie_pk(Integer movie_pk);
+
+	public double getScoreByMovie_pk(Integer movie_pk);	
+
+}

@@ -1,0 +1,133 @@
+package com.ggv.reservation.service;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.ggv.member.mapper.MemberMapper;
+import com.ggv.member.service.MemberServiceImpl;
+import com.ggv.movie.domain.MovieVO;
+import com.ggv.reservation.domain.ReservationVO;
+import com.ggv.reservation.domain.ReservedseatVO;
+import com.ggv.reservation.domain.ScreeningVO;
+import com.ggv.reservation.domain.TicketingVO;
+import com.ggv.reservation.mapper.ReservationMapper;
+
+import lombok.AllArgsConstructor;
+import lombok.Setter;
+import lombok.extern.log4j.Log4j;
+@Log4j
+@Service
+@AllArgsConstructor
+public class ReservationServiceImpl implements ReservationService{
+
+	@Setter
+	@Autowired
+	private ReservationMapper mapper;
+	
+	
+	
+	
+	@Override
+	public List<TicketingVO> theaterListbyMovie_pkLocation(Integer movie_pk, String location) {
+		// TODO Auto-generated method stub
+		return mapper.theaterListbyMovie_pkLocation(movie_pk, location);
+	}
+
+	@Override
+	public List<TicketingVO> movieTitleList() {
+		return mapper.movieTitleList();
+	}
+
+	@Override
+	public List<TicketingVO> theaterListbyMovie_pk(Integer movie_pk) {
+		// TODO Auto-generated method stub
+		return mapper.theaterListbyMovie_pk(movie_pk);
+	}
+
+
+
+	@Override
+	public List<TicketingVO> dateListbyAll(Integer movie_pk, String location, String t_address) {
+		// TODO Auto-generated method stub
+		return mapper.dateListbyAll(movie_pk, location, t_address);
+	}
+
+	@Override
+	public List<TicketingVO> timeList(Integer movie_pk, String location, String t_address, String scr_date) {
+		// TODO Auto-generated method stub
+		return mapper.timeList(movie_pk, location, t_address, scr_date);
+	}
+
+
+	@Override
+	public List<TicketingVO> ticketList2(Integer movie_pk, String location, String t_address, String scr_date,
+			String aud_name ,String scr_time) {
+		// TODO Auto-generated method stub
+		return mapper.ticketList2(movie_pk, location, t_address, scr_date, aud_name, scr_time);
+	}
+
+	@Override
+	public void reservationInsert(ReservationVO reservationVO) {
+		// TODO Auto-generated method stub
+		log.info("Reservationinsert "+reservationVO);
+		mapper.reservationInsert(reservationVO);
+	}
+
+	@Override
+	public void reservedseatInsert(ReservedseatVO reservedseatVO) {
+		log.info("ReservedseatVO --"+reservedseatVO);
+		/*int cnt = request.getparameters("aa").length();
+		cnt = 5;
+		for(5) {
+			ReservedseatVO vo = new ReservedseatVO(1,request.getparameters("aa")[cnt],1,1);
+			insert(vo);
+		}
+		ReservationVO rvo = new ReservationVO();
+		 */
+		mapper.reservedseatInsert(reservedseatVO);
+		
+		
+
+	}
+	
+	@Override
+	public TicketingVO movieTitle(Integer movie_pk) {
+		log.info("MovieTitle");
+		return mapper.movieTitle(movie_pk);
+	}
+
+	@Override
+	public List<ReservationVO> reservationList() {
+		// TODO Auto-generated method stub
+		return mapper.reservationList();
+	}
+	@Override
+	public List<ReservedseatVO> reservedseatList() {
+		// TODO Auto-generated method stub
+		return mapper.reservedseatList();
+	}
+
+	@Override
+	public List<ReservedseatVO> reservedseatListforSeatScr() {
+		// TODO Auto-generated method stub
+		return mapper.reservedseatListforSeatScr();
+	}
+
+	@Override
+	public void paymentUpdate(ReservationVO reservationVO) {
+		// TODO Auto-generated method stub
+		mapper.paymentUpdate(reservationVO);
+	}
+
+	@Override
+	public void reservationInsertKakao(ReservationVO reservationVO) {
+		// TODO Auto-generated method stub
+		mapper.reservationInsertKakao(reservationVO);
+	}
+}

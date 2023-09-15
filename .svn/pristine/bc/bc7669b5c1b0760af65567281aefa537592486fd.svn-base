@@ -1,0 +1,101 @@
+$(function(){
+	$(".custom-file-input").on("change", function() {
+	  var fileName = $(this).val().split("\\").pop();
+	  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+	});
+})
+	console.log("Review Module...");
+	
+	var reviewService = (function() {
+		function insert(review, callback, error) {
+			$.ajax({
+				type : 'post',
+				url : '/review/insert',
+				data : JSON.stringify(review),
+				contentType : "application/json; charset=UTF-8",
+				success : function(result) {
+					if(callback) {
+						callback(result);
+					}
+				},
+				error : function(xhr, status, er) {
+					if(error) {
+						error(er);
+					}
+				}
+			});
+		}
+		
+		function getList(review, callback, error) {
+			var movie_pk = review.movie_pk;
+			var page = review.page || 1;
+			
+			$.getJSON("/review/list/" + movie_pk + "/" + page,
+				function(data) {
+					console.log(data.reviewCnt, data.score, data.list);
+					if(callback) {
+						callback(data.reviewCnt, data.score, data.list);
+					}
+				}).fail(function(xhr, status, err) {
+				if(error) {
+					error();
+				}
+			});
+		}
+		
+		function get(review_pk, callback, error) {
+			$.get("/review/get/" + review_pk, function(result) {
+				if(callback) {
+					callback(result);
+				}
+			}).fail(function(xhr, status, err) {
+				if(error) {
+					error();
+				}
+			});
+		}
+		
+		function remove(review_pk, callback, error) {
+			$.ajax({
+				type : 'delete',
+				url : '/review/remove/' + review_pk,
+				success : function(deleteResult, status, xhr) {
+					if(callback) {
+						callback(deleteResult);
+					}
+				},
+				error : function(xhr, status, er) {
+					if(error) {
+						error(er);
+					}
+				}
+			});
+		}
+		
+		function modify(review, callback, error) {
+			$.ajax({
+				type : 'put',
+				url : '/review/modify/' + review.review_pk,
+				data : JSON.stringify(review),
+				contentType : "application/json; charset=UTF-8",
+				success : function(result, status, xhr) {
+					if(callback) {
+						callback(result);
+					}
+				},
+				error : function(xhr, status, er) {
+					if(error) {
+						error(er);
+					}
+				}
+			});
+		}
+		
+		return {
+			insert : insert,
+			getList : getList,
+			get : get,
+			remove : remove,
+			modify : modify
+		};		
+	})();

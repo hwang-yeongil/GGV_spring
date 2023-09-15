@@ -1,0 +1,18 @@
+package com.ggv.movie.domain;
+
+import org.apache.ibatis.type.Alias;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Alias("directorlist")
+@AllArgsConstructor
+@NoArgsConstructor
+public class DirectorListVO {
+	private Integer directorlist_pk;
+	private Integer director_pk_no;
+	private Integer movie_pk_no;
+	
+}

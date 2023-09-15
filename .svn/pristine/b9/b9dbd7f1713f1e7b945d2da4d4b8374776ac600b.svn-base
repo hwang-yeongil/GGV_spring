@@ -1,0 +1,93 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<jsp:include page="../includes/myPageHeader.jsp"></jsp:include>
+    <!-- header 부분 종료 -->
+
+    <main class="d-flex mt-5 mx-auto" id="wrapper">
+        <!-- Sidebar -->
+        <jsp:include page="../includes/myPageSideMenu.jsp"></jsp:include>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <button class="btn btn-danger" id="menu-toggle">Toggle Menu</button>
+            </nav>
+
+            <div class="container-fluid row col-8 mx-auto d-flex mt-3">
+                <div class="col-sm-4 d-flex justify-content-center">
+                    <img src="/images/user.png" alt="" class="">
+                </div>
+                <jsp:include page="../mypage/myPageTitle.jsp"></jsp:include>
+            </div>
+            <hr>
+
+            <div class="container-fluid">
+                <div class="my-resv">
+                    <div class="h4 mt-2">내가 쓴 리뷰</div>
+                    <div>
+                        <span>고객님이 작성한 리뷰를 보거나 수정 및 삭제를 할 수 있습니다.
+                        </span> 
+                    </div>
+                </div>
+                <hr>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover review-table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>영화명</th>
+                                <th>리뷰 제목</th>
+                                <th>작성일자</th>
+                                <th>평점</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>나쁜녀석들</td>
+                                <td><a href="#">TV가 더 재밌어요sdfsdfsdfsdf ashdfw 재더랮댜러ㅐ냐올</a></td>
+                                <td>19/09/25</td>
+                                <td>7.5</td>
+                            </tr>
+                            <tr>
+                                <td>예스터데이</td>
+                                <td><a href="#">비틀즈 보고싶다.</a></td>
+                                <td>19/09/24</td>
+                                <td>8.0</td>
+                            </tr>
+                            <tr>
+                                <td>미스터리</td>
+                                <td><a href="#">차승원식 코디이의 정석</a></td>
+                                <td>19/09/23</td>
+                                <td>7.5</td>
+                            </tr>
+                            <tr>
+                                <td>그것</td>
+                                <td><a href="#">무섭다.. 무서워..</a></td>
+                                <td>10/09/22</td>
+                                <td>7.0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="pagination">
+                        
+                    </div>
+                </div>
+            </div>
+            <!-- /#page-content-wrapper -->
+        </div>
+    </main>
+
+    <!-- footer 부분 시작 -->
+    <footer>
+        <div class="theater-info">
+        </div>
+        <div class="copyright">
+            java | spring | jsp | css | js | jquery | bootstrap4 | Oracle DB | AWS | Responsive Web
+            <br>
+            copyright@2019 Hwang yung il | Park so yoon | Jeong min young
+        </div>
+    </footer>
+    <!-- footer 부분 종료 -->
+</body>
+
+</html>

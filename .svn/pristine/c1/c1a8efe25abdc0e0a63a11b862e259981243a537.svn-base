@@ -1,0 +1,118 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<jsp:include page="../includes/myPageHeader.jsp"></jsp:include>
+    <!-- header 부분 종료 -->
+
+    <main class="d-flex mt-5 mx-auto" id="wrapper">
+        <!-- Sidebar -->
+        <jsp:include page="../includes/myPageSideMenu.jsp"></jsp:include>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <button class="btn btn-danger" id="menu-toggle">Toggle Menu</button>
+            </nav>
+
+            <div class="container-fluid row col-8 mx-auto d-flex mt-3">
+                <div class="col-sm-4 d-flex justify-content-center">
+                    <img src="/images/user.png" alt="" class="">
+                </div>
+                <jsp:include page="../mypage/myPageTitle.jsp"></jsp:include>
+            </div>
+            <hr>
+
+            <div class="container-fluid">
+                <div class="my-resv d-flex">
+                    <div class="h4 mt-2">MY 예매 내역</div>
+                    <div class="ml-4 mb-1 d-flex align-items-end">2건</div>
+                    <div class="ml-1 mb-1 d-flex align-items-end"><a href=""><i class="fa fa-plus-square"></i></a></div>
+                </div>
+                <div class="my-resv-list">
+                    <ul>
+                        <li>
+                            <div class="d-flex row mt-4">
+                                <div class="col-5">
+                                    <a href="#"><span class="h4">나쁜 녀석들</span><br><span>bad boys</span></a>
+                                </div>
+                                <div class="col-7 d-flex justify-content-center">
+                                    <span>2019년 9월 30일<br>CGV 상암 2관 16:00</span>
+                                </div>
+                            </div>
+                            <hr>
+                        </li>
+                        <li>
+                            <div class="d-flex row mt-4">
+                                <div class="col-5">
+                                    <a href="#"><span class="h4">예스터데이</span><br><span>yesterday</span></a>
+                                </div>
+                                <div class="col-7 d-flex justify-content-center">
+                                    <span>2019년 10월 1일<br>CGV 불광 1관 09:00</span>
+                                </div>
+                            </div>
+                            <hr>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="container-fluid mt-5 my-review-container">
+                <div class="my-review d-flex">
+                    <div class="h4 mt-2">내가 쓴 리뷰</div>
+                    <div class="ml-4 mb-1 d-flex align-items-end">4건</div>
+                    <div class="ml-1 mb-1 d-flex align-items-end"><a href=""><i class="fa fa-plus-square"></i></a></div>
+                </div>
+                <div class="my-review-list table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>영화명</th>
+                                <th>리뷰 제목</th>
+                                <th>평점</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>나쁜녀석들</td>
+                                <td>생각보다 재미는 없었지만 시간 때우기는 좋은 영화asdfasdfasdfasdf였다.</td>
+                                <td>7.5</td>
+                            </tr>
+                            <tr>
+                                <td>나쁜녀석들</td>
+                                <td>생각보다 재미는 없었지만 시간 때우기는 좋은 영화asdfasdfasdfasdf였다.</td>
+                                <td>7.5</td>
+                            </tr>
+                            <tr>
+                                <td>나쁜녀석들</td>
+                                <td>생각보다 재미는 없었지만 시간 때우기는 좋은 영화asdfasdfasdfasdf였다.</td>
+                                <td>7.5</td>
+                            </tr>
+                            <tr>
+                                <td>나쁜녀석들</td>
+                                <td>생각보다 재미는 없었지만 시간 때우기는 좋은 영화asdfasdfasdfasdf였다.</td>
+                                <td>7.5</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <!-- /#page-content-wrapper -->
+
+        </div>
+    </main>
+
+    <!-- footer 부분 시작 -->
+    <footer>
+        <div class="theater-info">
+        </div>
+        <div class="copyright">
+            java | spring | jsp | css | js | jquery | bootstrap4 | Oracle DB | AWS | Responsive Web
+            <br>
+            copyright@2019 Hwang yung il | Park so yoon | Jeong min young
+        </div>
+    </footer>
+    <!-- footer 부분 종료 -->
+</body>
+
+</html>
