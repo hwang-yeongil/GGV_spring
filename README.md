@@ -15,3 +15,5 @@ CGV를 참고하여 만든 영화 예매 사이트 입니다.
 - Server : aws , Apache
 
 발표 ppt : https://docs.google.com/presentation/d/1B1bXcDlcbfgm7OiTQUo5rz1a5tWXVoYe/edit?usp=sharing&ouid=101161188819704720912&rtpof=true&sd=true
+
+<img src="https://github.com/hwang-yeongil/GGV_spring/assets/71959055/811c83cf-ee7a-4b9e-90d0-286b88d396a6" width="700">
